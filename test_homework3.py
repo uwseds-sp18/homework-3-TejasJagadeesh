@@ -19,8 +19,7 @@ class TestCreateDataframe(unittest.TestCase):
     #Testcase to check if the video_id, language and category_id together is a key in the dataframe
     def test_key(self):
         dframe = create_dataframe('class.db')
-        dframe['newcol'] = dframe['video_id'] + dframe['language'] + dframe['category_id'].apply(str)
-        self.assertEqual(len(dframe),dframe['newcol'].nunique())
+        self.assertEqual(len(dframe),(dframe['video_id'].apply(str) + dframe['language'] + dframe['category_id'].apply(str)).nunique())
     
     #Testcase to check if the dataframe has 35950 rows
     def test_rowcount(self):
